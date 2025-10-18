@@ -1,6 +1,6 @@
 # Google Cloud "BigQuery Data Theft Hunt" Project
 
-This project (Project 2 of 3) demonstrates my ability to perform data-driven threat hunting in a cloud environment. The scenario involved detecting a compromised VM that was using its over-privileged permissions to steal sensitive data from a Cloud Storage bucket.
+This project demonstrates my ability to perform data-driven threat hunting in a cloud environment. The scenario involved detecting a compromised VM that was using its over-privileged permissions to steal sensitive data from a Cloud Storage bucket.
 
 This project moves beyond simple "prevention" (like firewall rules) and into active "detection and response."
 
