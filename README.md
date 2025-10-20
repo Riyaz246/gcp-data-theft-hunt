@@ -41,3 +41,19 @@ Finally, I created a log-based alert in Cloud Monitoring that will notify me via
 
 ## Conclusion
 This project demonstrates an end-to-end detection and response workflow. I successfully (1) instrumented a cloud environment to capture the right data, (2) aggregated and stored that data at scale in BigQuery, (3) hunted for the threat using SQL, and (4) built an automated alert for future incidents.
+
+
+
+graph TD
+    subgraph GCP Environment
+        Bucket[Cloud Storage Bucket] -- 1. Generates Data Access Logs --> Logging[Cloud Logging]
+        Logging -- 2. Log Sink Routes Logs --> BigQuery[BigQuery Dataset (security_logs)]
+        Bucket -- 3. Attacker Action (gsutil cp) --> Logging
+    end
+
+    subgraph SecOps Workflow
+        Analyst[Security Analyst] -- 4. Threat Hunt (SQL Query) --> BigQuery
+        Analyst -- 5. Creates Alert from Query --> Monitoring[Cloud Monitoring (Log-based Alert)]
+        Monitoring -- 6. Continuously Monitors --> BigQuery
+        Monitoring -- 7. Triggers on Match --> Notify[Notification Channel (Email, Slack)]
+    end
